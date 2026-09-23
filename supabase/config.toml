@@ -1,0 +1,4 @@
+project_id = "deepseek-memory"
+
+[functions.chat]
+verify_jwt = true

@@ -1,0 +1,16 @@
+{
+  "name": "长忆 · DeepSeek 私人记忆客户端",
+  "short_name": "长忆",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f9f7f2",
+  "theme_color": "#f7f4ee",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
