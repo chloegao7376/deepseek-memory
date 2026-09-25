@@ -1,4 +1,4 @@
-# 长忆：DeepSeek 长期记忆客户端
+# DeepSeek 长期记忆客户端与部署指引
 
 一个面向单用户的最小部署版本：GitHub Pages 前端、Supabase Auth/Postgres/pgvector/Edge Functions 后端，以及 DeepSeek 官方 API。
 
@@ -16,18 +16,15 @@
 1. 一个 GitHub 账户。
 2. 一个 Supabase 项目。
 3. 一个 DeepSeek API Key，并设置可接受的余额或消费控制。
-4. 一个只有你能访问的邮箱，用于登录客户端。
+4. 一个访问的邮箱，用于登录客户端。
 
 ## 二、创建 Supabase 数据库
 
 1. 在 Supabase 新建项目。
 2. 打开 SQL Editor。
 3. 完整运行 `supabase/migrations/001_initial.sql`。
-4. 在 Authentication → URL Configuration 中，把 Site URL 和 Redirect URLs 加入最终的 GitHub Pages 地址，例如：
-
-   `https://YOUR_GITHUB_NAME.github.io/deepseek-memory/`
-
-5. 在 Authentication → Providers 中启用 Email。建议先完成自己的首次登录，再关闭公开新用户注册。
+4. 在 Authentication → URL Configuration 中，把 Site URL 和 Redirect URLs 加入最终的 GitHub Pages 地址。
+5. 5. 在 Authentication → Providers 中启用 Email。建议先完成自己的首次登录，再关闭公开新用户注册。
 
 ## 三、部署 Edge Function
 
@@ -52,7 +49,7 @@ npx supabase secrets set ALLOWED_ORIGIN=https://YOUR_GITHUB_NAME.github.io
 
 ## 四、部署 GitHub Pages 前端
 
-1. 在 GitHub 创建一个新的空仓库，例如 `deepseek-memory`。
+1. 在 GitHub 创建一个新的空仓库。
 2. 把本目录内容提交并推送到仓库的 `main` 分支。
 3. 打开仓库 Settings → Secrets and variables → Actions → Variables，创建：
 
@@ -68,11 +65,11 @@ npx supabase secrets set ALLOWED_ORIGIN=https://YOUR_GITHUB_NAME.github.io
 
 1. 用 Safari 打开 GitHub Pages 地址。
 2. 输入与 `OWNER_EMAIL` 完全一致的邮箱，点击邮件中的登录链接。
-3. 打开“设定”，粘贴从旧 DeepSeek App 窗口整理出的四部分档案。
+3. 打开“设定”，粘贴从旧 DeepSeek App 窗口整理出的用于迁移的档案。
 4. 先发送几条低敏感度消息，确认角色、数据库和记忆召回正常。
 5. 确认无误后，在 Safari 的分享菜单选择“添加到主屏幕”。
 
-迁移提示词见 `MIGRATION_PROMPT.md`。DeepSeek App 的原窗口不会自动同步到 API 客户端；需要通过该提示词整理后人工迁移。
+DeepSeek App 的原窗口不会自动同步到 API 客户端；需要通过该提示词整理后人工迁移。
 
 ## 本地运行
 
@@ -81,8 +78,6 @@ cp .env.example .env
 npm install
 npm run dev
 ```
-
-本地地址通常是 `http://localhost:5173`。若要让本地页面调用已部署的函数，需要暂时把 `ALLOWED_ORIGIN` 改为该地址；测试后再改回 GitHub Pages origin。
 
 ## 当前版本的取舍
 
